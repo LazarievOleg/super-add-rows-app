@@ -31,7 +31,7 @@ class TableContainer extends React.Component {
             ></TableForm>
 
             {this.props.error && (
-              <div className={classes.error}>{this.props.error}</div>
+              <div className={classes.beautyText}>{this.props.error}</div>
             )}
           </div>
         )}

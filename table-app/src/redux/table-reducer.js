@@ -11,6 +11,9 @@ let initialState = {
   disableInput: false
 };
 
+const maxRows = 10;
+const error = `can't add more then 10 rows`;
+
 export const tableReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ROWS: {
@@ -29,7 +32,8 @@ export const tableReducer = (state = initialState, action) => {
     case SET_ERROR: {
       return {
         ...state,
-        error: action.error, disableInput: true
+        error: action.error,
+        disableInput: true
       };
     }
 
@@ -67,14 +71,14 @@ export const addNewRow = row => {
     await dispatch(setIsFetching(true));
     const response = await rowsApi.apiAddNewRow(row);
 
-    if (response.error) {
+    if (response.length >= maxRows) {
       await dispatch(setIsFetching(false));
-      await dispatch(setError(response.error));
+      await dispatch(setRowsData(response));
+      await dispatch(setError(error));
     } else {
       await dispatch(setIsFetching(false));
       await dispatch(setRowsData(response));
     }
-
   };
 };
 

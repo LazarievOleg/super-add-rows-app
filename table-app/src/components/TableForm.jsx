@@ -4,6 +4,7 @@ import TextField from "material-ui/TextField";
 import classes from "./TableComponent.module.css";
 import { Button, Divider } from "@material-ui/core";
 import { MuiThemeProvider } from "material-ui/styles";
+import { useEffect } from "react";
 
 const required = value => (value ? undefined : "Required");
 const maxLength = max => value =>
@@ -11,12 +12,13 @@ const maxLength = max => value =>
 const maxLength15 = maxLength(15);
 
 const TableHeader = () => {
-  return <div className={classes.header}>{"Table with one column"}</div>;
+  return <div className={classes.beautyText}>{"Table with one column"}</div>;
 };
 
 const InputTextArea = props => {
   return (
     <TextField
+    autoComplete='off'
       disabled={props.disabled}
       fullWidth={true}
       hintText={props.label}
@@ -52,6 +54,7 @@ const Form = props => {
     reset,
     submitting
   } = props;
+
 
   return (
     <MuiThemeProvider>
