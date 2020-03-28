@@ -1,0 +1,51 @@
+.main {
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: lightgray;
+  border-style: solid;
+}
+
+.table {
+  padding: 10px;
+}
+
+.header {
+  font-variant: small-caps;
+  text-align: center;
+  font-size: 1.2em;
+  background: linear-gradient(135deg, #fe6b8b 20%, #ff8e53 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  padding: 0.6em 0.6em;
+}
+
+.buttons {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader {
+  padding: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error{
+    font-variant: small-caps;
+    text-align: center;
+    font-size: 1.2em;
+    background: linear-gradient(135deg, #fe6b8b 20%, #ff8e53 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  
+    padding: 0.6em 0.6em;
+}

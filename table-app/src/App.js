@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import Toolbar from "./Toolbar";
-import TableContainer from "./TableContainer";
+import Toolbar from "./components/Toolbar";
+import TableContainer from "../src/components/TableContainer";
 
 function App() {
   return (
