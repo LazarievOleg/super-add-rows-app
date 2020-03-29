@@ -4,12 +4,13 @@ import { mainContainer } from "./Table.module.css";
 import { Divider } from "@material-ui/core";
 import { MuiThemeProvider, getMuiTheme } from "material-ui/styles";
 import { RowsList } from "./RowsList";
-import { InputForm } from "./InputForm";
-import { InputError } from "./InputError";
+import { InputForm } from "./InputComponents/InputReduxForm";
+import { InputError } from "./InputComponents/InputError";
 import { TableHeader } from "./TableHeader";
 
 const TableForm = props => {
   let {
+    deleteRow,
     inputError,
     disableInput,
     rows,
@@ -25,7 +26,7 @@ const TableForm = props => {
       <div className={mainContainer}>
         <TableHeader></TableHeader>
         <Divider></Divider>
-        <RowsList rows={rows}></RowsList>
+        <RowsList deleteRow={deleteRow} rows={rows}></RowsList>
         <InputForm
           disableInput={disableInput}
           handleSubmit={handleSubmit}

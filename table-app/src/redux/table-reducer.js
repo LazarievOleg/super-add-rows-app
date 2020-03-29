@@ -32,7 +32,7 @@ export const tableReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.error,
-        disableInput: true
+        disableInput: action.disableInput
       };
     }
     default:
@@ -50,9 +50,10 @@ export const setIsFetching = isFetching => ({
   isFetching
 });
 
-export const setError = error => ({
+export const setError = ({ error, disableInput }) => ({
   type: SET_ERROR,
-  error
+  error,
+  disableInput
 });
 
 export const getRows = () => async dispatch => {
@@ -62,7 +63,7 @@ export const getRows = () => async dispatch => {
   if (response.length >= maxRows) {
     await dispatch(setIsFetching(false));
     await dispatch(setRowsData(response));
-    await dispatch(setError(error));
+    await dispatch(setError({ error: error, disableInput: true }));
   } else {
     await dispatch(setIsFetching(false));
     await dispatch(setRowsData(response));
@@ -76,11 +77,20 @@ export const addNewRow = row => async dispatch => {
   if (response.length >= maxRows) {
     await dispatch(setIsFetching(false));
     await dispatch(setRowsData(response));
-    await dispatch(setError(error));
+    await dispatch(setError({ error: error, disableInput: true }));
   } else {
     await dispatch(setIsFetching(false));
     await dispatch(setRowsData(response));
   }
+};
+
+export const deleteRow = rowId => async dispatch => {
+  await dispatch(setIsFetching(true));
+  const response = await rowsApi.apiDeleteRow(rowId);
+
+  await dispatch(setError({ error: null, disableInput: false }));
+  await dispatch(setIsFetching(false));
+  await dispatch(setRowsData(response));
 };
 
 export default tableReducer;

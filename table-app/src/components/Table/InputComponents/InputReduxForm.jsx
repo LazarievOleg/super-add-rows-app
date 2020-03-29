@@ -1,8 +1,8 @@
 import React from "react";
 import { Field } from "redux-form";
-import {form, table, button} from "./Table.module.css";
+import {form, table, button} from "../Table.module.css";
 import { Button } from "@material-ui/core";
-import {maxLength, required} from '../Validation/validation-form'
+import {maxLength, required} from '../../Validation/validation-form'
 import {InputTextArea} from './InputTextArea'
 
 const maxLength15 = maxLength(15);

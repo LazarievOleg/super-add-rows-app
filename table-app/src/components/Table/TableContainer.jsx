@@ -3,7 +3,7 @@ import TableForm from "./TableForm";
 import { tableForm } from "./Table.module.css";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
-import { getRows, addNewRow } from "../../redux/table-reducer";
+import { getRows, addNewRow, deleteRow } from "../../redux/table-reducer";
 import { connect } from "react-redux";
 import { Preloader } from "../Preloader/Preloader";
 
@@ -23,6 +23,7 @@ const TableContainer = React.memo(props => {
       ) : (
         <div className={tableForm}>
           <TableForm
+          deleteRow={props.deleteRow}
             isFetching={props.isFetching}
             onSubmit={onSubmit}
             rows={props.rows}
@@ -44,5 +45,5 @@ const mapStateToProps = state => ({
 
 export default compose(
   withRouter,
-  connect(mapStateToProps, { getRows, addNewRow })
+  connect(mapStateToProps, { getRows, addNewRow, deleteRow })
 )(TableContainer);

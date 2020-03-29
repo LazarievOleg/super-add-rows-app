@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 const bodyParser = require('body-parser');
-const { getRows, addRow } = require('./rows');
+const { getRows, addRow, delRow } = require('./rows-controller');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -30,7 +30,16 @@ app.get('/get-rows', (req, res) => {
 
 app.post('/add-row', (req, res) => {
   const newRow = req.body.row;
-  res.send(addRow(newRow));
+  const rowsData = addRow(newRow);
+
+  rowsData.error
+    ? res.status(400).send({ error: rowsData.error })
+    : res.send(rowsData);
+});
+
+app.post('/del-row', (req, res) => {
+  const { rowId } = req.body;
+  res.send(delRow(rowId));
 });
 
 app.listen(5000);
