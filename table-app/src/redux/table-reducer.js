@@ -22,7 +22,6 @@ export const tableReducer = (state = initialState, action) => {
         rows: action.rows,
       };
     }
-
     case SET_IS_FETCHING: {
       return {
         ...state,
@@ -36,7 +35,6 @@ export const tableReducer = (state = initialState, action) => {
         disableInput: true,
       };
     }
-
     default:
       return state;
   }

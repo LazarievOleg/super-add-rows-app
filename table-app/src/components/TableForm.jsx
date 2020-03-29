@@ -4,7 +4,6 @@ import TextField from "material-ui/TextField";
 import classes from "./TableComponent.module.css";
 import { Button, Divider } from "@material-ui/core";
 import { MuiThemeProvider } from "material-ui/styles";
-import { useEffect } from "react";
 
 const required = value => (value ? undefined : "Required");
 const maxLength = max => value =>
@@ -35,11 +34,8 @@ const RenderRowsWithData = props => {
       <TextField
         readOnly={true}
         name={props.value}
-                  
         value={props.value}
         fullWidth={true}
-
-
       ></TextField>
     </div>
   );
