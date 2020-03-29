@@ -7,38 +7,36 @@ import { getRows, addNewRow } from "../redux/table-reducer";
 import { connect } from "react-redux";
 import { Preloader } from "./Preloader";
 
-class TableContainer extends React.Component {
-  componentDidMount() {
-    this.props.getRows();
-  }
+const TableContainer = React.memo(props => {
+  useEffect(() => {
+    props.getRows();
+  }, []);
 
-  onSubmit = formData => {
-    this.props.addNewRow(formData);
+  const onSubmit = formData => {
+    props.addNewRow(formData);
   };
 
-  render() {
-    return (
-      <>
-        {this.props.isFetching ? (
-          <Preloader />
-        ) : (
-          <div className={classes.main}>
-            <TableForm
-              isFetching={this.props.isFetching}
-              onSubmit={this.onSubmit}
-              rows={this.props.rows}
-              disableInput={this.props.disableInput}
-            ></TableForm>
+  return (
+    <>
+      {props.isFetching ? (
+        <Preloader />
+      ) : (
+        <div className={classes.main}>
+          <TableForm
+            isFetching={props.isFetching}
+            onSubmit={onSubmit}
+            rows={props.rows}
+            disableInput={props.disableInput}
+          ></TableForm>
 
-            {this.props.error && (
-              <div className={classes.beautyText}>{this.props.error}</div>
-            )}
-          </div>
-        )}
-      </>
-    );
-  }
-}
+          {props.error && (
+            <div className={classes.beautyText}>{props.error}</div>
+          )}
+        </div>
+      )}
+    </>
+  );
+});
 
 const mapStateToProps = state => ({
   isFetching: state.table.isFetching,
