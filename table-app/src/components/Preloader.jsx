@@ -5,7 +5,7 @@ import classes from "./TableComponent.module.css";
 export const Preloader = () => {
   return (
     <div className={classes.preloader} >
-      <img src={PreloaderPicture} />;
+      <img src={PreloaderPicture} />
     </div>
   );
 };

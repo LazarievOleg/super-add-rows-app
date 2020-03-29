@@ -1,39 +1,39 @@
-import { rowsApi } from "../api";
+import { rowsApi } from '../api';
 
-const SET_ROWS = "reducer/SET_ROWS";
-const SET_IS_FETCHING = "reducer/SET_IS_FETCHING";
-const SET_ERROR = "reducer/SET_ERROR";
+const SET_ROWS = 'reducer/SET_ROWS';
+const SET_IS_FETCHING = 'reducer/SET_IS_FETCHING';
+const SET_ERROR = 'reducer/SET_ERROR';
 
-let initialState = {
+const initialState = {
   rows: [],
   isFetching: false,
   error: null,
-  disableInput: false
+  disableInput: false,
 };
 
 const maxRows = 10;
-const error = `can't add more then 10 rows`;
+const error = 'can\'t add more then 10 rows';
 
 export const tableReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ROWS: {
       return {
         ...state,
-        rows: action.rows
+        rows: action.rows,
       };
     }
 
     case SET_IS_FETCHING: {
       return {
         ...state,
-        isFetching: action.isFetching
+        isFetching: action.isFetching,
       };
     }
     case SET_ERROR: {
       return {
         ...state,
         error: action.error,
-        disableInput: true
+        disableInput: true,
       };
     }
 
@@ -42,44 +42,40 @@ export const tableReducer = (state = initialState, action) => {
   }
 };
 
-export const setRowsData = rows => ({
+export const setRowsData = (rows) => ({
   type: SET_ROWS,
-  rows
+  rows,
 });
 
-export const setIsFetching = isFetching => ({
+export const setIsFetching = (isFetching) => ({
   type: SET_IS_FETCHING,
-  isFetching
+  isFetching,
 });
 
-export const setError = error => ({
+export const setError = (error) => ({
   type: SET_ERROR,
-  error
+  error,
 });
 
-export const getRows = () => {
-  return async dispatch => {
-    await dispatch(setIsFetching(true));
-    const response = await rowsApi.apiGetRows();
-    await dispatch(setIsFetching(false));
-    await dispatch(setRowsData(response));
-  };
+export const getRows = () => async (dispatch) => {
+  await dispatch(setIsFetching(true));
+  const response = await rowsApi.apiGetRows();
+  await dispatch(setIsFetching(false));
+  await dispatch(setRowsData(response));
 };
 
-export const addNewRow = row => {
-  return async dispatch => {
-    await dispatch(setIsFetching(true));
-    const response = await rowsApi.apiAddNewRow(row);
+export const addNewRow = (row) => async (dispatch) => {
+  await dispatch(setIsFetching(true));
+  const response = await rowsApi.apiAddNewRow(row);
 
-    if (response.length >= maxRows) {
-      await dispatch(setIsFetching(false));
-      await dispatch(setRowsData(response));
-      await dispatch(setError(error));
-    } else {
-      await dispatch(setIsFetching(false));
-      await dispatch(setRowsData(response));
-    }
-  };
+  if (response.length >= maxRows) {
+    await dispatch(setIsFetching(false));
+    await dispatch(setRowsData(response));
+    await dispatch(setError(error));
+  } else {
+    await dispatch(setIsFetching(false));
+    await dispatch(setRowsData(response));
+  }
 };
 
 export default tableReducer;

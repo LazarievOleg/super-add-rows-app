@@ -35,8 +35,11 @@ const RenderRowsWithData = props => {
       <TextField
         readOnly={true}
         name={props.value}
+                  
         value={props.value}
         fullWidth={true}
+
+
       ></TextField>
     </div>
   );
