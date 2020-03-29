@@ -1,0 +1,46 @@
+.tableForm {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContainer {
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: lightgray;
+  border-style: solid;
+  display: flex;
+  justify-content: center;
+  width: 50vw;
+  flex-direction: column;
+}
+
+.table {
+  padding: 10px;
+}
+
+
+.button {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.beautyText {
+  font-variant: small-caps;
+  text-align: center;
+  font-size: 1.2em;
+  background: linear-gradient(135deg, #fe6b8b 20%, #ff8e53 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0.6em 0.6em;
+}
+
+.form {
+  display: flex;
+    flex-direction: column;
+}

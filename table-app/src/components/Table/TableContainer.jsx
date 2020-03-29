@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import TableForm from "./TableForm";
-import classes from "./TableComponent.module.css";
+import { tableForm } from "./Table.module.css";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
-import { getRows, addNewRow } from "../redux/table-reducer";
+import { getRows, addNewRow } from "../../redux/table-reducer";
 import { connect } from "react-redux";
-import { Preloader } from "./Preloader";
+import { Preloader } from "../Preloader/Preloader";
 
 const TableContainer = React.memo(props => {
   useEffect(() => {
@@ -21,17 +21,14 @@ const TableContainer = React.memo(props => {
       {props.isFetching ? (
         <Preloader />
       ) : (
-        <div className={classes.main}>
+        <div className={tableForm}>
           <TableForm
             isFetching={props.isFetching}
             onSubmit={onSubmit}
             rows={props.rows}
             disableInput={props.disableInput}
+            inputError={props.error}
           ></TableForm>
-
-          {props.error && (
-            <div className={classes.beautyText}>{props.error}</div>
-          )}
         </div>
       )}
     </>

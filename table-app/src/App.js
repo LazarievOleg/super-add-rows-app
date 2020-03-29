@@ -1,14 +1,15 @@
-import React from 'react';
-import './App.css';
-import Toolbar from './components/Toolbar';
-import TableContainer from './components/TableContainer';
+import React from "react";
+import "./App.css";
+import Toolbar from "./components/ToolBar/Toolbar";
+import TableContainer from "./components/Table/TableContainer";
+
 
 function App() {
   return (
-    <div>
-      <Toolbar />
-      <TableContainer />
-    </div>
+      <div>
+        <Toolbar />
+        <TableContainer />
+      </div>
   );
 }
 

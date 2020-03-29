@@ -1,7 +1,9 @@
 const rows = [];
-const getRows = () => rows;
 
 const maxRows = process.env.MAX_ROWS;
+
+const getRows = () => rows;
+
 
 const addRow = (rowData) => {
   if (rows.length <= maxRows) {
@@ -9,7 +11,8 @@ const addRow = (rowData) => {
     rows.push({ id: rowId, row: rowData });
     return rows;
   }
-  return { error: `can't add more then ${maxRows} rows` };
+ // some back-end validation error here
 };
 
 module.exports = { getRows, addRow };
+
