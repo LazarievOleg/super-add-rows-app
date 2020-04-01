@@ -2,7 +2,6 @@ import React from "react";
 import { reset, reduxForm } from "redux-form";
 import { mainContainer } from "./Table.module.css";
 import { Divider } from "@material-ui/core";
-import { MuiThemeProvider, getMuiTheme } from "material-ui/styles";
 import { RowsList } from "./RowsList";
 import { InputForm } from "./InputComponents/InputReduxForm";
 import { InputError } from "./InputComponents/InputError";
@@ -22,7 +21,6 @@ const TableForm = props => {
   } = props;
 
   return (
-    <MuiThemeProvider muiTheme={getMuiTheme()}>
       <div className={mainContainer}>
         <TableHeader></TableHeader>
         <Divider></Divider>
@@ -37,7 +35,6 @@ const TableForm = props => {
         ></InputForm>
         {inputError && <InputError error={inputError}></InputError>}
       </div>
-    </MuiThemeProvider>
   );
 };
 

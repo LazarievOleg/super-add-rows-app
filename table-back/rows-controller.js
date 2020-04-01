@@ -1,16 +1,19 @@
 let rows = [];
+let rowId = 0;
 const maxRows = process.env.MAX_ROWS;
 
 const getRows = () => rows;
 
 const addRow = (rowData) => {
   if (rows.length + 1 <= maxRows) {
-    const rowId = rows.length + 1;
+    rowId += 1;
     rows.push({ id: rowId, row: rowData });
     return rows;
-  } if (rows.length + 1 > maxRows) {
+  }
+  if (rows.length + 1 > maxRows) {
     return { error: 'max rows length exceeded' };
-  } return rows;
+  }
+  return rows;
 };
 
 const delRow = (rowId) => {

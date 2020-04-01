@@ -1,15 +1,39 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
-import Toolbar from "./components/ToolBar/Toolbar";
+import { Header } from "./components/ToolBar/Toolbar";
 import TableContainer from "./components/Table/TableContainer";
+import { Route, Switch } from "react-router-dom";
+import { Preloader } from "./components/Preloader/Preloader";
 
+const NotFoundPage = React.lazy(() =>
+  import("./components/NotFoundPage/NotFound")
+);
 
 function App() {
   return (
-      <div>
-        <Toolbar />
-        <TableContainer />
-      </div>
+    <>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <>
+              <Header />
+              <TableContainer />
+            </>
+          )}
+        />
+        <Route
+          render={() => {
+            return (
+              <Suspense fallback={ <Preloader/>}>
+                <NotFoundPage/>
+              </Suspense>
+            );
+          }}
+        />
+      </Switch>
+    </>
   );
 }
 

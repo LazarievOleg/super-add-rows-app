@@ -1,4 +1,4 @@
-import { rowsApi } from "../api";
+import { rowsApi } from "../api/api";
 
 const SET_ROWS = "reducer/SET_ROWS";
 const SET_IS_FETCHING = "reducer/SET_IS_FETCHING";

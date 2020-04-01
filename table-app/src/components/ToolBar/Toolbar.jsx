@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function WithStylesButton() {
+export const Header = () => {
   const classes = useStyles();
 
   return (
