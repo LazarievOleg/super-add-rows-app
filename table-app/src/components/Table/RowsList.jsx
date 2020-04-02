@@ -2,12 +2,11 @@ import React from "react";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Divider from '@material-ui/core/Divider';
+import Divider from "@material-ui/core/Divider";
 import { Button } from "@material-ui/core";
 import { button as classButton } from "./Table.module.css";
 
-export const RowsList = props => {
-  const rows = props.rows;
+export const RowsList = ({ deleteRow, rows }) => {
   return (
     <List>
       {rows &&
@@ -18,7 +17,7 @@ export const RowsList = props => {
               <div className={classButton}>
                 <Button
                   onClick={() => {
-                    props.deleteRow(rowData.id);
+                    deleteRow(rowData.id);
                   }}
                   color="secondary"
                 >
