@@ -24,7 +24,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test:local": "react-scripts test ",
-    "test": "set CI=true && react-scripts test --env=jsdom",
+    "test:ci": "set CI=true && react-scripts test --env=jsdom",
     "test:watch": "jest --watch",
     "lint": "yarn eslint ./src"
   },
