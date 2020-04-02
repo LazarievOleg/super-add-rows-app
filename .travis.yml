@@ -1,7 +1,7 @@
 language: node_js
 
 before_install:
-    - chmod +x ./table-app\start_tests.sh
+    - chmod +x ./table-app/start_tests.sh
 
 script:
-    - ./table-app\start_tests.sh
+    - ./table-app/start_tests.sh
