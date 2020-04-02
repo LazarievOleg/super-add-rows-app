@@ -1,3 +1,4 @@
+/*eslint-disable */
 import React, { Suspense } from "react";
 import "./App.css";
 import { Header } from "./components/ToolBar/Toolbar";
@@ -10,6 +11,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 const NotFoundPage = React.lazy(() =>
+
   import("./components/NotFoundPage/NotFound")
 );
 

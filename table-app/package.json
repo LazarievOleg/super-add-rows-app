@@ -25,7 +25,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test ",
     "test:ci": "set CI=true && react-scripts test --env=jsdom",
-
     "test:watch": "jest --watch",
     "lint": "yarn eslint ./src"
   },
@@ -35,7 +34,6 @@
   "engines": {
     "node": ">=12.0.0"
   },
-
   "browserslist": {
     "production": [
       ">0.2%",
