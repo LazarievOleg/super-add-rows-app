@@ -78,6 +78,11 @@ export const addNewRow = row => async dispatch => {
     await dispatch(setIsFetching(false));
     await dispatch(setRowsData(response));
     await dispatch(setError({ error: error, disableInput: true }));
+  } else if(response.error) {
+    const rowsData = await rowsApi.apiGetRows();
+    await dispatch(setIsFetching(false));
+    await dispatch(setRowsData(rowsData));
+    await dispatch(setError({ error: error, disableInput: true }));
   } else {
     await dispatch(setIsFetching(false));
     await dispatch(setRowsData(response));

@@ -33,7 +33,7 @@ app.post('/add-row', (req, res) => {
   const rowsData = addRow(newRow);
 
   rowsData.error
-    ? res.status(400).send({ error: rowsData.error })
+    ? res.status(200).send({ error: rowsData.error })
     : res.send(rowsData);
 });
 
