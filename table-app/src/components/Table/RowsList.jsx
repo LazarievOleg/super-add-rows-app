@@ -10,14 +10,14 @@ export const RowsList = ({ deleteRow, rows }) => {
   return (
     <List>
       {rows &&
-        rows.map(rowData => (
-          <div key={rowData.id}>
+        rows.map(({_id: id, rows}) => (
+          <div key={id}>
             <ListItem>
-              <ListItemText primary={rowData.row} />
+              <ListItemText primary={rows} />
               <div className={classButton}>
                 <Button
                   onClick={() => {
-                    deleteRow(rowData.id);
+                    deleteRow(id);
                   }}
                   color="secondary"
                 >

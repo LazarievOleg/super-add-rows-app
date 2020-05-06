@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 
 const app = express();
 const bodyParser = require('body-parser');
@@ -20,26 +21,39 @@ app.use((req, res, next) => {
   next();
 });
 
+async function start() {
+  try {
+    await mongoose.connect(process.env.MONGO, {
+      useNewUrlParser: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true,
+    });
+    app.listen(5000);
+  } catch (e) {
+  }
+}
+
 app.get('/', (req, res) => {
   res.send('Hi there =)');
 });
 
-app.get('/get-rows', (req, res) => {
-  res.send(getRows());
+app.get('/get-rows', async (req, res) => {
+  const rows = await getRows();
+  rows.length ? res.send(rows) : res.send([]);
 });
 
-app.post('/add-row', (req, res) => {
+app.post('/add-row', async (req, res) => {
   const newRow = req.body.row;
-  const rowsData = addRow(newRow);
+  const rowsData = await addRow(newRow);
 
   rowsData.error
     ? res.status(200).send({ error: rowsData.error })
     : res.send(rowsData);
 });
 
-app.post('/del-row', (req, res) => {
+app.post('/del-row', async (req, res) => {
   const { rowId } = req.body;
-  res.send(delRow(rowId));
+  await res.send(await delRow(rowId));
 });
 
-app.listen(5000);
+start();

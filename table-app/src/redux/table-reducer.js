@@ -59,7 +59,7 @@ export const setError = ({ error, disableInput }) => ({
 export const getRows = () => async dispatch => {
   await dispatch(setIsFetching(true));
   const response = await rowsApi.apiGetRows();
-
+  
   if (response.length >= maxRows) {
     await dispatch(setIsFetching(false));
     await dispatch(setRowsData(response));
@@ -92,7 +92,7 @@ export const addNewRow = row => async dispatch => {
 export const deleteRow = rowId => async dispatch => {
   await dispatch(setIsFetching(true));
   const response = await rowsApi.apiDeleteRow(rowId);
-
+  
   await dispatch(setError({ error: null, disableInput: false }));
   await dispatch(setIsFetching(false));
   await dispatch(setRowsData(response));
